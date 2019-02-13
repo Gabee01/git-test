@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Octokit;
 
 namespace teste
 {
     public interface IGithubFactory
     {
-        IReadOnlyList<Repository> CreateRepositories();
+        List<Repository> CreateRepoForLanguages(List<Language> languages);
         Repository GetDescription(int repositoryId);
     }
 }

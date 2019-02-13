@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Octokit;
 
 namespace teste
@@ -9,19 +11,19 @@ namespace teste
 
         public GithubFactory()
         {
-            _github = new GitHubClient;
+            _github = new GitHubClient(new ProductHeaderValue("teste-bcredi"));
         }
         
-        public IReadOnlyList<Repository> CreateRepositories()
-        {
-            var autoGrow = _github.Repository.GetAllForUser("Gabee01");
-
-            return await autoGrow;
-        }
-
         public Repository GetDescription(int repositoryId)
         {
             throw new System.NotImplementedException();
+        }
+
+        public List<Repository> CreateRepoForLanguages(List<Language> languages)
+        {
+            return languages.SelectMany(language =>
+                    _github.Search.SearchRepo(new SearchRepositoriesRequest(language.ToString())).Result.Items.ToList())
+                .ToList();
         }
     }
 }

@@ -1,37 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Octokit;
 using teste.Models;
+using Activity = System.Diagnostics.Activity;
 
 namespace teste.Controllers
 {
     public class HomeController : Controller
     {
+        private GithubFactory _factory;
+        public HomeController()
+        {
+            _factory = new GithubFactory();
+        }
         public IActionResult Index()
         {
             return View();
         }
-
-        public IActionResult About()
+        
+        public IActionResult FindStore(List<Language> languages)
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            return View("Repos",_factory.CreateRepoForLanguages(languages));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

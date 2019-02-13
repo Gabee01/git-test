@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/gabrielcarraro/Workspace/bcredi/teste/teste.csproj",
+    "projectUniqueName": "/Users/gabrielcarraro/Workspace/bcredi/bcredi/teste/teste.csproj",
     "projectName": "teste",
-    "projectPath": "/Users/gabrielcarraro/Workspace/bcredi/teste/teste.csproj",
-    "outputPath": "/Users/gabrielcarraro/Workspace/bcredi/teste/obj/",
+    "projectPath": "/Users/gabrielcarraro/Workspace/bcredi/bcredi/teste/teste.csproj",
+    "outputPath": "/Users/gabrielcarraro/Workspace/bcredi/bcredi/teste/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -53,17 +53,6 @@
       ],
       "assetTargetFallback": true,
       "warn": true
-    }
-  },
-  "runtimes": {
-    "win": {
-      "#import": []
-    },
-    "win-x64": {
-      "#import": []
-    },
-    "win-x86": {
-      "#import": []
     }
   }
 }
