@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,10 +20,13 @@ namespace teste
             throw new System.NotImplementedException();
         }
 
-        public List<Repository> CreateRepoForLanguages(List<Language> languages)
-        {
+        public List<Repository> CreateReposForLanguages(List<string> languages)
+        {   
             return languages.SelectMany(language =>
-                    _github.Search.SearchRepo(new SearchRepositoriesRequest(language.ToString())).Result.Items.ToList())
+                    _github.Search.SearchRepo(new SearchRepositoriesRequest
+                    {
+                        Language = Enum.Parse<Language>(language)
+                    }).Result.Items.ToList())
                 .ToList();
         }
     }

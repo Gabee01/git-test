@@ -2,31 +2,31 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
 $(function() {
-    var button = $('#find-store');
+    let button = $('#find-store');
 
     button.on('click',
-        function() {
-            var languages = [];
-            
-            $('.selected-language').each(function (language) {
-                languages.push(language.val);
+        function () {
+            let languages = [];
+
+            $('.selected-language').each(function () {
+                languages.push($(this).val().toString());
             });
-            
-            console.log(languages);
-            
-            $.get("/findstore",
-                {
+
+            $.ajax({
+                method: "POST",
+                url: "/Home/FindStore",
+                data: {
                     languages
                 },
-                function(response) {
-                    Console.Write(response);
-                    ('#repos-result').html.text(response)
+                success: function (response) {
+                    $('#repos-result').html(response)
+                    $('#repos-result').show()
+                    alert("success");
                 },
-                function(errorMessage) {
-                    Console.Write(errorMessage);
+                error: function () {
+                    alert("error");
                 }
-            );
-        });
+            });
+        })
 });

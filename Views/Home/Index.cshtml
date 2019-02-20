@@ -1,7 +1,7 @@
 ﻿@using System.Linq
 @model List<Octokit.Language>
 <div>
-    @for (int i = 0; i < 5; i++)
+    @for (int i = 0; i < 3; i++)
     {
         <select class="form-control selected-language">
             @foreach (var language in Enum.GetNames(typeof(Octokit.Language)).ToList())
