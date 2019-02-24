@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using GitRepos.Github;
+using GitRepos.Models;
 using Microsoft.AspNetCore.Mvc;
-using teste.Models;
 using Activity = System.Diagnostics.Activity;
 
-namespace teste.Controllers
+namespace GitRepos.Controllers
 {
     public class HomeController : Controller
     {
-        private IGithubFactory _factory;
+        private readonly IGithubFactory _factory;
         public HomeController()
         {
             _factory = new GithubFactory();

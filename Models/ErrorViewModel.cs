@@ -1,6 +1,4 @@
-using System;
-
-namespace teste.Models
+namespace GitRepos.Models
 {
     public class ErrorViewModel
     {

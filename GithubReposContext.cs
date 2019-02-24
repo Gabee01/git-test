@@ -1,7 +1,7 @@
+using GitRepos.Models;
 using Microsoft.EntityFrameworkCore;
-using teste.Models;
 
-namespace teste
+namespace GitRepos
 {
     public class GithubReposContext : DbContext
     {

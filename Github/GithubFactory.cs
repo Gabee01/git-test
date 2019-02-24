@@ -2,10 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using Octokit;
 
-namespace teste
+namespace GitRepos.Github
 {
     public class GithubFactory : IGithubFactory
     {
@@ -13,7 +12,7 @@ namespace teste
 
         public GithubFactory()
         {
-            _github = new GitHubClient(new ProductHeaderValue("teste-bcredi"));
+            _github = new GitHubClient(new ProductHeaderValue(Environment.GetEnvironmentVariable("API_ID")));
         }
 
         public List<Repository> CreateReposForLanguages(List<string> languages)
@@ -22,18 +21,10 @@ namespace teste
                     _github.Search.SearchRepo(new SearchRepositoriesRequest
                     {
                         Language = Enum.Parse<Language>(language),
-//                        SortField = 
+                        SortField = RepoSearchSort.Forks
+//                        SortField = RepoSearchSort.Stars
                     }).Result.Items.ToList())
                 .ToList();
-            
-//            List<teste.Models.Repository> repositories;
-//            repos.Select(repo => repositories.Add( new Models.Repository()
-//                {
-//                    repo.Id,
-//                    repo.CreatedAt,
-//                    repo.Name,
-//                    repo.Url
-//                }))
             
             return repos;
         }

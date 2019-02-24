@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace teste.Migrations
+namespace GitRepos.Migrations
 {
     public partial class CreateGithubReposDB : Migration
     {
