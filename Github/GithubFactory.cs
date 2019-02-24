@@ -21,8 +21,7 @@ namespace GitRepos.Github
                     _github.Search.SearchRepo(new SearchRepositoriesRequest
                     {
                         Language = Enum.Parse<Language>(language),
-                        SortField = RepoSearchSort.Forks
-//                        SortField = RepoSearchSort.Stars
+                        SortField = RepoSearchSort.Stars
                     }).Result.Items.ToList())
                 .ToList();
             

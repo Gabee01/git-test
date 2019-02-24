@@ -1,8 +1,53 @@
 @model Octokit.Repository
 
 @{
-    ViewBag.Title = @Model.Name;
+    ViewBag.Title = Model.Name;
     Layout = "_Layout";
 }
 
-<h2>@Model.Id - @Model.Name - @Model.Owner - @Model.Language</h2>
+<h2 align="center">@Model.Name </h2>
+
+<div class="row">
+    <div class="col-lg-6">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">@Model.FullName</span>
+                Name
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">
+                    <a href="@Model.Owner.HtmlUrl" style="color:inherit">
+                        @Model.Owner.HtmlUrl
+                    </a>
+                </span>
+                Owner
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">
+                    <a href="@Model.HtmlUrl" style="color:inherit">
+                        @Model.HtmlUrl
+                    </a>
+                </span>
+                Link
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">@Model.StargazersCount</span>
+                Stars count
+            </li>
+        </ul>
+    </div>
+    <div class="col-lg-6">
+        <h3>Description</h3>
+            <div class="well well-lg">
+                <p>
+                    @Model.Description
+                </p>
+            </div>
+    </div>
+</div>
