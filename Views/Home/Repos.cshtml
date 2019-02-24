@@ -10,7 +10,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Owner</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Updated at</th>
                     <th scope="col">Stars</th>
@@ -24,13 +23,14 @@
                 <tr>
                     <th scope="row">@repo.Id</th>
                     <td>@repo.Name</td>
-                    <td>@repo.Owner.Name</td>
                     <td>@repo.CreatedAt.ToString("dd-mm-yy")</td>
                     <td>@repo.UpdatedAt.ToString("dd-mm-yy")</td>
                     <td>@repo.StargazersCount</td>
                     <td>@repo.GitUrl</td>
                     <td>
-                        <button type="button" class="btn btn-primary"  value="@repo.Id">Details</button>
+                        <a href="/Home/GetDetails?repoId=@repo.Id">
+                            <button id="show-details" type="button" class="btn btn-primary" value="@repo.Id">Details</button>
+                        </a>
                     </td>
                 </tr>
             }

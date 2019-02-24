@@ -7,6 +7,6 @@ namespace teste
     public interface IGithubFactory
     {
         List<Repository> CreateReposForLanguages(List<string> languages);
-        Repository GetDescription(int repositoryId);
+        Task<Repository> CreateRepoDetails(int repoId);
     }
 }

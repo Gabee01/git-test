@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Octokit;
 
 namespace teste
@@ -14,20 +15,32 @@ namespace teste
         {
             _github = new GitHubClient(new ProductHeaderValue("teste-bcredi"));
         }
-        
-        public Repository GetDescription(int repositoryId)
-        {
-            throw new System.NotImplementedException();
-        }
 
         public List<Repository> CreateReposForLanguages(List<string> languages)
         {   
-            return languages.SelectMany(language =>
+            var repos = languages.SelectMany(language =>
                     _github.Search.SearchRepo(new SearchRepositoriesRequest
                     {
-                        Language = Enum.Parse<Language>(language)
+                        Language = Enum.Parse<Language>(language),
+//                        SortField = 
                     }).Result.Items.ToList())
                 .ToList();
+            
+//            List<teste.Models.Repository> repositories;
+//            repos.Select(repo => repositories.Add( new Models.Repository()
+//                {
+//                    repo.Id,
+//                    repo.CreatedAt,
+//                    repo.Name,
+//                    repo.Url
+//                }))
+            
+            return repos;
+        }
+
+        public async Task<Repository> CreateRepoDetails(int repoId)
+        {
+            return await _github.Repository.Get(repoId);
         }
     }
 }

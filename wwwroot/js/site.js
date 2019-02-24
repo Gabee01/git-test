@@ -1,32 +1,25 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
+﻿$(function() {
+    let findButton = $('#find-store');
+    
+    findButton.on('click',function () {
+        let languages = [];
 
-// Write your JavaScript code.
-$(function() {
-    let button = $('#find-store');
+        $('.selected-language').each(function () {
+            languages.push($(this).val().toString());
+        });
 
-    button.on('click',
-        function () {
-            let languages = [];
-
-            $('.selected-language').each(function () {
-                languages.push($(this).val().toString());
-            });
-
-            $.ajax({
-                method: "POST",
-                url: "/Home/FindStore",
-                data: {
-                    languages
-                },
-                success: function (response) {
-                    $('#repos-result').html(response)
-                    $('#repos-result').show()
-                    alert("success");
-                },
-                error: function () {
-                    alert("error");
-                }
-            });
-        })
+        $.ajax({
+            method: "POST",
+            url: "/Home/FindStore",
+            data: {
+                languages
+            },
+            success: function (response) {
+                $('#repos-result').html(response).show();
+            },
+            error: function () {
+                alert("error");
+            }
+        });
+    });
 });
