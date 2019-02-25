@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using GitRepos.Github;
 using GitRepos.Github.Interfaces;
 using GitRepos.Models;
@@ -11,14 +10,10 @@ namespace GitRepos.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IGithubFactory _factory;
         private readonly IGithubService _service;
-        private readonly IGithubRepository _repository;
         public HomeController(GithubReposContext context)
         {
-            _factory = new GithubFactory();
-            _service = new GithubService();
-            _repository = new GithubRepository(context);
+            _service = new GithubService(context);
         }
         public IActionResult Index()
         {
@@ -30,10 +25,11 @@ namespace GitRepos.Controllers
         {
             try
             {
-                var repos = _service.GetReposFromGit(languages);
-                var reposModel = _factory.CreateRepos(repos);
-                _repository.CreateMany(reposModel);
-                return PartialView("Repos", reposModel);
+                return PartialView("Repos", _service.FindAndSaveRepos(languages));
+            }
+            catch (Octokit.ApiValidationException)
+            {
+                return BadRequest("Github API returned an error");
             }
             catch (Exception)
             {
@@ -46,7 +42,7 @@ namespace GitRepos.Controllers
         {
             try
             {
-                return PartialView("DetailedRepo", _repository.FindRepo(repoId));
+                return PartialView("DetailedRepo", _service.GetInfo(repoId));
             }
             catch (Exception)
             {

@@ -5,7 +5,7 @@ namespace GitRepos.Github.Interfaces
 {
     public interface IGithubRepository
     {
-        void CreateMany(List<Repository> repos);
+        void SaveMany(List<Repository> repos);
         Repository FindRepo(int repoId);
     }
 }

@@ -14,7 +14,7 @@ namespace GitRepos.Github
             _context = context;
         }
 
-        public void CreateMany(List<Repository> repos)
+        public void SaveMany(List<Repository> repos)
         {
             foreach (var repo in repos)
             {

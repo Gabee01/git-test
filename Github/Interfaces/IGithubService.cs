@@ -5,6 +5,7 @@ namespace GitRepos.Github.Interfaces
 {
     public interface IGithubService
     {
-        List<Repository> GetReposFromGit(List<string> languages);
+        Models.Repository GetInfo(int repoId);
+        List<Models.Repository> FindAndSaveRepos(List<string> languages);
     }
 }
