@@ -1,4 +1,4 @@
-﻿@model List<Octokit.Repository>
+﻿@model List<GitRepos.Models.Repository>
 @{
     ViewData["Title"] = "Repos";
 }
@@ -10,10 +10,10 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Stars</th>
+                    <th scope="col">Url</th>
                     <th scope="col">Created at</th>
                     <th scope="col">Updated at</th>
-                    <th scope="col">Stars</th>
-                    <th scope="col">url</th>
                     <th scope="col">Details</th>
                 </tr>
             </thead>
@@ -23,10 +23,10 @@
                 <tr>
                     <th scope="row">@repo.Id</th>
                     <td>@repo.Name</td>
-                    <td>@repo.CreatedAt.ToString("dd-mm-yy")</td>
-                    <td>@repo.UpdatedAt.ToString("dd-mm-yy")</td>
                     <td>@repo.StargazersCount</td>
                     <td>@repo.GitUrl</td>
+                    <td>@DateTimeOffset.FromUnixTimeSeconds(repo.CreatedAt).ToString("dd-mm-yy")</td>
+                    <td>@DateTimeOffset.FromUnixTimeSeconds(repo.UpdatedAt).ToString("dd-mm-yy")</td>
                     <td>
                         <a href="/Home/GetDetails?repoId=@repo.Id">
                             <button id="show-details" type="button" class="btn btn-primary" value="@repo.Id">Details</button>

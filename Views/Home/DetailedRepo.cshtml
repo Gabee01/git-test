@@ -1,4 +1,4 @@
-@model Octokit.Repository
+@model GitRepos.Models.Repository
 
 @{
     ViewBag.Title = Model.Name;
@@ -18,8 +18,8 @@
         <ul class="list-group">
             <li class="list-group-item">
                 <span class="badge">
-                    <a href="@Model.Owner.HtmlUrl" style="color:inherit">
-                        @Model.Owner.HtmlUrl
+                    <a href="@Model.OwnerHtmlUrl" style="color:inherit">
+                        @Model.OwnerHtmlUrl
                     </a>
                 </span>
                 Owner
@@ -33,6 +33,12 @@
                     </a>
                 </span>
                 Link
+            </li>
+        </ul>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <span class="badge">@Model.Language.ToString()</span>
+                Language
             </li>
         </ul>
         <ul class="list-group">

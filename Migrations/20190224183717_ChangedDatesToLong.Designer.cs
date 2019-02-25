@@ -2,15 +2,17 @@
 using GitRepos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GitRepos.Migrations
 {
     [DbContext(typeof(GithubReposContext))]
-    partial class GithubReposContextModelSnapshot : ModelSnapshot
+    [Migration("20190224183717_ChangedDatesToLong")]
+    partial class ChangedDatesToLong
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,8 +34,6 @@ namespace GitRepos.Migrations
                     b.Property<string>("GitUrl");
 
                     b.Property<string>("HtmlUrl");
-
-                    b.Property<string>("Language");
 
                     b.Property<string>("Name");
 

@@ -2,15 +2,17 @@
 using GitRepos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace GitRepos.Migrations
 {
     [DbContext(typeof(GithubReposContext))]
-    partial class GithubReposContextModelSnapshot : ModelSnapshot
+    [Migration("20190224180224_CreateReposTable")]
+    partial class CreateReposTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -20,10 +22,10 @@ namespace GitRepos.Migrations
 
             modelBuilder.Entity("GitRepos.Models.Repository", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<long>("CreatedAt");
+                    b.Property<int>("CreatedAt");
 
                     b.Property<string>("Description");
 
@@ -33,15 +35,13 @@ namespace GitRepos.Migrations
 
                     b.Property<string>("HtmlUrl");
 
-                    b.Property<string>("Language");
-
                     b.Property<string>("Name");
 
                     b.Property<string>("OwnerHtmlUrl");
 
                     b.Property<int>("StargazersCount");
 
-                    b.Property<long>("UpdatedAt");
+                    b.Property<int>("UpdatedAt");
 
                     b.HasKey("Id");
 
