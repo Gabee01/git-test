@@ -29,6 +29,7 @@ namespace GitRepos
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            Console.WriteLine($"CONN_STRING ->> {Environment.GetEnvironmentVariable("GITREPOS_CONNSTRING")}");
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddDbContext<GithubReposContext>(options =>
@@ -36,7 +37,7 @@ namespace GitRepos
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, GithubReposContext context)
         {
             if (env.IsDevelopment())
             {
@@ -58,6 +59,7 @@ namespace GitRepos
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            context.Database.Migrate();
         }
     }
 }

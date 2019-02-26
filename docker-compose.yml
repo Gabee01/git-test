@@ -1,0 +1,24 @@
+version: '3.3'
+services:
+  web-app:
+    container_name: git-repos-app
+    build:
+        context: ./
+        dockerfile: ./Dockerfile
+    env_file:
+    - vars.env
+    ports:
+    - "8000:80"
+    restart: always
+    depends_on:
+    - db
+  db:
+    container_name: postgres
+    image: postgres
+    restart: always
+    env_file:
+    - vars.env
+    volumes:
+    - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
