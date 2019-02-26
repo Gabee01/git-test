@@ -10,5 +10,5 @@ To build, test and run the code, simply run
 docker-compose up
 ```
 
-* You must have docker and docker-compose installed on your maching
+* You must have docker and docker-compose installed on your machine
 * It was tested only on a Unix system
