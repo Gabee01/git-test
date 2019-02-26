@@ -10,12 +10,12 @@ namespace GitRepos.Github
     public class GithubService : IGithubService
     {
         private static IGithubRepository _repository;
-        private static GitHubClient _github;
+        private static IGitHubClient _github;
 
-        public GithubService(GithubReposContext context)
+        public GithubService(GithubReposContext context, IGitHubClient gitHubClient)
         {
             _repository = new GithubRepository(context);
-            _github = new GitHubClient(new ProductHeaderValue(Environment.GetEnvironmentVariable("API_ID")));
+            _github = gitHubClient;
         }
 
         public List<Repository> FindAndSaveRepos(List<string> languages)

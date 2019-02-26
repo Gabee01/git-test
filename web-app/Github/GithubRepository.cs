@@ -8,7 +8,7 @@ namespace GitRepos.Github
     public class GithubRepository : IGithubRepository
     {
         private GithubReposContext _context;
-
+        
         public GithubRepository(GithubReposContext context)
         {
             _context = context;

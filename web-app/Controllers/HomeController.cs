@@ -4,6 +4,7 @@ using GitRepos.Github;
 using GitRepos.Github.Interfaces;
 using GitRepos.Models;
 using Microsoft.AspNetCore.Mvc;
+using Octokit;
 using Activity = System.Diagnostics.Activity;
 
 namespace GitRepos.Controllers
@@ -13,7 +14,8 @@ namespace GitRepos.Controllers
         private readonly IGithubService _service;
         public HomeController(GithubReposContext context)
         {
-            _service = new GithubService(context);
+            var githubClient = new GitHubClient(new ProductHeaderValue(Environment.GetEnvironmentVariable("API_ID")));
+            _service = new GithubService(context, githubClient);
         }
         public IActionResult Index()
         {
